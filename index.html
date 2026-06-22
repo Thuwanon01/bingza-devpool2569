@@ -6,34 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>แนะนำตัว — ธุวานนท์ อรรถสุภาพงศ์</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
-<body class="min-h-screen bg-gray-100 flex items-center justify-center">
+<body class="min-h-screen bg-gray-100 flex items-center justify-center font-['Sarabun']">
 
-  <div class="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
+  <!-- Weather Widget — มุมขวาบน -->
+  <div id="weather-widget" class="fixed top-4 right-4 bg-white rounded-lg shadow-md px-4 py-3 text-sm text-gray-600 min-w-[160px]">
+    <div class="text-xs text-gray-400 mb-1">กฟภ. สำนักงานใหญ่</div>
+    <div id="weather-temp" class="text-2xl font-bold text-blue-600">--°C</div>
+    <div id="weather-desc" class="text-xs text-gray-400 mt-1">กำลังโหลด...</div>
+  </div>
 
-    <h1 class="text-2xl font-bold text-gray-900 mb-2">นายธุวานนท์ อรรถสุภาพงศ์</h1>
-    <p class="text-gray-500 mb-1">ชื่อเล่น: บิ๊ง</p>
-    <p class="text-blue-600 font-bold mb-1">โครงการ Gem รุ่นที่ 6 · PEA Innovation HUB กนว.</p>
-    <p class="text-gray-400 text-sm mb-4">กำลังจะย้ายเข้า Easy D · สายงาน ธต.</p>
+  <div class="bg-white rounded-lg shadow-md p-8 max-w-xl w-full">
+
+    <h1 class="text-4xl font-bold text-gray-700 mb-2">นายธุวานนท์ อรรถสุภาพงศ์</h1>
+    <p class="text-2xl text-gray-500 mb-1 pb-1 pt-4">ชื่อเล่น: บิ๊ง</p>
+    <p class="text-2xl text-blue-600 font-bold mb-1">โครงการ Gem รุ่นที่ 6 · PEA Innovation HUB กนว.</p>
+    <p class="text-xl text-gray-400 text-sm mb-4">กำลังจะย้ายเข้า Easy D · สายงาน ธต.</p>
 
     <hr class="border-gray-200 mb-4">
 
-    <button
-      id="toggleBtn"
-      class="bg-blue-600 
+    <button id="toggleBtn" class="bg-blue-600 
       hover:bg-blue-800 
       text-white 
       px-4 
       py-2 
       rounded 
       cursor-pointer 
-      text-base"
-    >
+      text-base">
       เหตุผลที่อยากเข้า DevPool ▼
     </button>
 
-    <div id="reason" class="hidden mt-4 p-4 bg-gray-50 border-l-4 border-blue-600 rounded leading-relaxed text-gray-700">
+    <div id="reason"
+      class="hidden mt-4 p-4 bg-gray-50 border-l-4 border-blue-600 rounded leading-relaxed text-gray-700">
       <p>
         ปัจจุบันเป็นทีมพัฒนาผลิตภัณฑ์ <strong>Hinghoihome</strong>
         ซึ่งเป็นผลิตภัณฑ์เชิงพาณิชย์ของ กฟภ.
