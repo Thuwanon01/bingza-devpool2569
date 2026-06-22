@@ -1,46 +1,112 @@
 <!DOCTYPE html>
+<!-- บอก browser ว่าเป็น HTML เวอร์ชัน 5 (มาตรฐานปัจจุบัน) -->
 <html lang="th">
+<!-- lang="th" บอก browser และ screen reader ว่าภาษาหลักคือภาษาไทย -->
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>แนะนำตัว — ธุวานนท์ อรรถสุภาพงศ์</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+  <!-- <head> คือส่วนที่ browser อ่านแต่ไม่แสดงผล ใช้ตั้งค่าต่าง ๆ -->
 
+  <!-- กำหนด encoding เป็น UTF-8 เพื่อให้แสดงภาษาไทยได้ถูกต้อง -->
+  <meta charset="UTF-8">
+
+  <!-- บอก browser บนมือถือว่าให้ใช้ความกว้างจริงของหน้าจอ ไม่ zoom ออก -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ชื่อที่แสดงบน tab ของ browser -->
+  <title>แนะนำตัว — ธุวานนท์ อรรถสุภาพงศ์</title>
+
+  <!--
+    ป้องกัน FOUC (Flash of Unstyled Content):
+    อ่านค่าจาก localStorage ก่อน browser วาดหน้าจอ
+    ถ้าเคยเลือก dark mode ไว้ → ใส่ class "dark" บน <html> ทันที
+    ต้องวาง script นี้ไว้ใน <head> ก่อน Tailwind โหลด
+  -->
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+  <!-- โหลด Tailwind CSS จาก CDN — ใช้สำหรับ utility class เช่น bg-white, text-xl -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!--
+    ตั้งค่า Tailwind ให้ใช้ darkMode: 'class'
+    หมายความว่า: Tailwind จะ activate dark: prefix เมื่อ <html> มี class "dark"
+    (default คือ 'media' ซึ่งตาม OS setting — เราไม่ใช้แบบนั้น)
+  -->
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+
+  <!-- โหลดฟอนต์ Sarabun จาก Google Fonts เพื่อให้ภาษาไทยอ่านง่ายขึ้น -->
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="min-h-screen bg-gray-100 flex items-center justify-center font-['Sarabun']">
+<!-- <body> คือส่วนที่แสดงบนหน้าจอ ทุก element ที่ user เห็นอยู่ที่นี่ -->
+<!-- transition-colors duration-300 = ทำให้การเปลี่ยนสีตอนสลับ dark/light mode มี animation นุ่มนวล -->
+<body class="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center font-['Sarabun'] transition-colors duration-300">
 
-  <!-- Weather Widget — มุมขวาบน -->
-  <div id="weather-widget" class="fixed top-4 right-4 bg-white rounded-lg shadow-md px-4 py-3 text-sm text-gray-600 min-w-[160px]">
-    <div class="text-xs text-gray-400 mb-1">กฟภ. สำนักงานใหญ่</div>
-    <div id="weather-temp" class="text-2xl font-bold text-blue-600">--°C</div>
-    <div id="weather-desc" class="text-xs text-gray-400 mt-1">กำลังโหลด...</div>
+  <!-- ปุ่มสลับ Dark/Light Mode — fixed = ติดมุมซ้ายบนเสมอแม้ scroll -->
+  <button id="darkModeBtn"
+    class="fixed top-4 left-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-md px-3 py-2 text-sm cursor-pointer hover:shadow-lg transition-all duration-200">
+    🌙 Dark Mode
+    <!-- ข้อความจะถูก JavaScript เปลี่ยนเป็น ☀️ Light Mode เมื่ออยู่ใน dark mode -->
+  </button>
+
+  <!-- Weather Widget — fixed = ติดมุมขวาบนเสมอ / min-w = กำหนดความกว้างขั้นต่ำ -->
+  <div id="weather-widget"
+    class="fixed top-4 right-4 bg-white dark:bg-gray-800 rounded-lg shadow-md px-4 py-3 text-sm text-gray-600 dark:text-gray-300 min-w-[160px]">
+
+    <!-- ป้ายชื่อสถานที่ — text-xs = ตัวเล็กสุด ใช้เป็น label -->
+    <div class="text-xs text-gray-400 dark:text-gray-500 mb-1">กฟภ. สำนักงานใหญ่</div>
+
+    <!-- แสดงอุณหภูมิ — ค่าเริ่มต้น "--°C" จะถูก JavaScript แทนที่เมื่อโหลดสำเร็จ -->
+    <div id="weather-temp" class="text-2xl font-bold text-blue-600 dark:text-blue-400">--°C</div>
+
+    <!-- แสดงสภาพอากาศเป็นข้อความ — เริ่มต้นแสดง "กำลังโหลด..." -->
+    <div id="weather-desc" class="text-xs text-gray-400 dark:text-gray-500 mt-1">กำลังโหลด...</div>
+
   </div>
 
-  <div class="bg-white rounded-lg shadow-md p-8 max-w-xl w-full">
+  <!-- Card หลัก — max-w-xl จำกัดความกว้างสูงสุด / w-full ให้เต็มจอบนมือถือ -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 max-w-xl w-full transition-colors duration-300">
 
-    <h1 class="text-4xl font-bold text-gray-700 mb-2">นายธุวานนท์ อรรถสุภาพงศ์</h1>
-    <p class="text-2xl text-gray-500 mb-1 pb-1 pt-4">ชื่อเล่น: บิ๊ง</p>
-    <p class="text-2xl text-blue-600 font-bold mb-1">โครงการ Gem รุ่นที่ 6 · PEA Innovation HUB กนว.</p>
-    <p class="text-xl text-gray-400 text-sm mb-4">กำลังจะย้ายเข้า Easy D · สายงาน ธต.</p>
+    <!-- ชื่อเต็ม — text-4xl = ขนาดใหญ่สุดใน card นี้ -->
+    <h1 class="text-4xl font-bold text-gray-700 dark:text-gray-100 mb-2">นายธุวานนท์ อรรถสุภาพงศ์</h1>
 
-    <hr class="border-gray-200 mb-4">
+    <!-- ชื่อเล่น -->
+    <p class="text-2xl text-gray-500 dark:text-gray-400 mb-1 pb-1 pt-4">ชื่อเล่น: บิ๊ง</p>
 
-    <button id="toggleBtn" class="bg-blue-600 
-      hover:bg-blue-800 
-      text-white 
-      px-4 
-      py-2 
-      rounded 
-      cursor-pointer 
+    <!-- โครงการและหน่วยงาน — text-blue-600 ใช้เน้นให้เห็นชัด -->
+    <p class="text-2xl text-blue-600 dark:text-blue-400 font-bold mb-1">โครงการ Gem รุ่นที่ 6 · PEA Innovation HUB กนว.</p>
+
+    <!-- ข้อมูลเพิ่มเติม — text-gray-400 สีจางกว่าเพื่อแสดง priority ต่ำกว่า -->
+    <p class="text-xl text-gray-400 dark:text-gray-500 text-sm mb-4">กำลังจะย้ายเข้า Easy D · สายงาน ธต.</p>
+
+    <!-- เส้นคั่น — border-gray-200 สีอ่อน ไม่ดึงความสนใจ -->
+    <hr class="border-gray-200 dark:border-gray-700 mb-4">
+
+    <!-- ปุ่มเปิด/ปิด section เหตุผล — id ใช้ให้ JavaScript ค้นหา element นี้ -->
+    <button id="toggleBtn" class="bg-blue-600
+      hover:bg-blue-800
+      dark:bg-blue-700
+      dark:hover:bg-blue-500
+      text-white
+      px-4
+      py-2
+      rounded
+      cursor-pointer
       text-base">
       เหตุผลที่อยากเข้า DevPool ▼
+      <!-- ลูกศร ▼/▲ จะถูก JavaScript เปลี่ยนตามสถานะ expand/collapse -->
     </button>
 
+    <!-- Section เหตุผล — hidden = ซ่อนอยู่โดย default / border-l-4 = เส้นซ้ายเน้นข้อความ -->
     <div id="reason"
-      class="hidden mt-4 p-4 bg-gray-50 border-l-4 border-blue-600 rounded leading-relaxed text-gray-700">
+      class="hidden mt-4 p-4 bg-gray-50 dark:bg-gray-700 border-l-4 border-blue-600 dark:border-blue-400 rounded leading-relaxed text-gray-700 dark:text-gray-300">
+
+      <!-- เนื้อหาเหตุผล — <strong> ทำให้ชื่อผลิตภัณฑ์เป็นตัวหนา -->
       <p>
         ปัจจุบันเป็นทีมพัฒนาผลิตภัณฑ์ <strong>Hinghoihome</strong>
         ซึ่งเป็นผลิตภัณฑ์เชิงพาณิชย์ของ กฟภ.
@@ -48,10 +114,12 @@
         และเข้าใจบริบทของ DevPool ที่มาพัฒนาให้
         และถ้ามีโอกาส ก็ต้องการที่จะทำงานอื่น ๆ ให้ กฟภ. เช่นกัน
       </p>
+
     </div>
 
   </div>
 
+  <!-- โหลด JavaScript แยกไฟล์ — วางท้าย <body> เพื่อให้ HTML โหลดก่อนเสมอ -->
   <script src="script.js"></script>
 
 </body>
