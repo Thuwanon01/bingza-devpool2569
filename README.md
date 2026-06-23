@@ -7,7 +7,7 @@ Portfolio / Resume เว็บไซต์ส่วนตัว สร้าง
 | รายการ | ลิงก์ |
 |--------|-------|
 | **เว็บไซต์ (Vercel)** | https://bingza-portfo-devpool69.vercel.app/ |
-| **Source Code (GitHub)** | https://github.com/Bingza/web-starter |
+| **Source Code (GitHub)** | https://github.com/Thuwanon01/bingza-devpool2569 |
 
 ---
 
