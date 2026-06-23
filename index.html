@@ -1,127 +1,323 @@
 <!DOCTYPE html>
-<!-- บอก browser ว่าเป็น HTML เวอร์ชัน 5 (มาตรฐานปัจจุบัน) -->
 <html lang="th">
-<!-- lang="th" บอก browser และ screen reader ว่าภาษาหลักคือภาษาไทย -->
 
 <head>
-  <!-- <head> คือส่วนที่ browser อ่านแต่ไม่แสดงผล ใช้ตั้งค่าต่าง ๆ -->
-
-  <!-- กำหนด encoding เป็น UTF-8 เพื่อให้แสดงภาษาไทยได้ถูกต้อง -->
   <meta charset="UTF-8">
-
-  <!-- บอก browser บนมือถือว่าให้ใช้ความกว้างจริงของหน้าจอ ไม่ zoom ออก -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume — ธุวานนท์ อรรถสุภาพงศ์</title>
 
-  <!-- ชื่อที่แสดงบน tab ของ browser -->
-  <title>แนะนำตัว — ธุวานนท์ อรรถสุภาพงศ์</title>
-
-  <!--
-    ป้องกัน FOUC (Flash of Unstyled Content):
-    อ่านค่าจาก localStorage ก่อน browser วาดหน้าจอ
-    ถ้าเคยเลือก dark mode ไว้ → ใส่ class "dark" บน <html> ทันที
-    ต้องวาง script นี้ไว้ใน <head> ก่อน Tailwind โหลด
-  -->
   <script>
     if (localStorage.getItem('theme') === 'dark') {
       document.documentElement.classList.add('dark');
     }
   </script>
 
-  <!-- โหลด Tailwind CSS จาก CDN — ใช้สำหรับ utility class เช่น bg-white, text-xl -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
 
-  <!--
-    ตั้งค่า Tailwind ให้ใช้ darkMode: 'class'
-    หมายความว่า: Tailwind จะ activate dark: prefix เมื่อ <html> มี class "dark"
-    (default คือ 'media' ซึ่งตาม OS setting — เราไม่ใช้แบบนั้น)
-  -->
-  <script>
-    tailwind.config = { darkMode: 'class' }
-  </script>
-
-  <!-- โหลดฟอนต์ Sarabun จาก Google Fonts เพื่อให้ภาษาไทยอ่านง่ายขึ้น -->
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<!-- <body> คือส่วนที่แสดงบนหน้าจอ ทุก element ที่ user เห็นอยู่ที่นี่ -->
-<!-- transition-colors duration-300 = ทำให้การเปลี่ยนสีตอนสลับ dark/light mode มี animation นุ่มนวล -->
-<body class="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center font-['Sarabun'] transition-colors duration-300">
+<body class="font-['Sarabun']">
 
-  <!-- ปุ่มสลับ Dark/Light Mode — fixed = ติดมุมซ้ายบนเสมอแม้ scroll -->
+  <!-- Dark Mode Toggle -->
   <button id="darkModeBtn"
-    class="fixed top-4 left-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-md px-3 py-2 text-sm cursor-pointer hover:shadow-lg transition-all duration-200">
+    class="fixed top-4 left-4 z-50
+           bg-white dark:bg-gray-800
+           text-gray-700 dark:text-gray-200
+           px-3 py-2 rounded-xl shadow-md
+           text-sm font-medium
+           hover:shadow-lg cursor-pointer select-none
+           transition-colors duration-300">
     🌙 Dark Mode
-    <!-- ข้อความจะถูก JavaScript เปลี่ยนเป็น ☀️ Light Mode เมื่ออยู่ใน dark mode -->
   </button>
 
-  <!-- Weather Widget — fixed = ติดมุมขวาบนเสมอ / min-w = กำหนดความกว้างขั้นต่ำ -->
+  <!-- Weather Widget -->
   <div id="weather-widget"
-    class="fixed top-4 right-4 bg-white dark:bg-gray-800 rounded-lg shadow-md px-4 py-3 text-sm text-gray-600 dark:text-gray-300 min-w-[160px]">
-
-    <!-- ป้ายชื่อสถานที่ — text-xs = ตัวเล็กสุด ใช้เป็น label -->
-    <div class="text-xs text-gray-400 dark:text-gray-500 mb-1">กฟภ. สำนักงานใหญ่</div>
-
-    <!-- แสดงอุณหภูมิ — ค่าเริ่มต้น "--°C" จะถูก JavaScript แทนที่เมื่อโหลดสำเร็จ -->
-    <div id="weather-temp" class="text-2xl font-bold text-blue-600 dark:text-blue-400">--°C</div>
-
-    <!-- แสดงสภาพอากาศเป็นข้อความ — เริ่มต้นแสดง "กำลังโหลด..." -->
-    <div id="weather-desc" class="text-xs text-gray-400 dark:text-gray-500 mt-1">กำลังโหลด...</div>
-
+    class="fixed top-4 right-4 z-50
+           min-w-[72px] md:min-w-[150px]
+           bg-white dark:bg-gray-800
+           rounded-xl shadow-md
+           px-2 py-2 md:px-4 md:py-3
+           text-gray-600 dark:text-gray-300
+           transition-colors duration-300">
+    <div class="hidden md:block text-xs text-gray-400 dark:text-gray-500 mb-1">กฟภ. สำนักงานใหญ่</div>
+    <div id="weather-temp" class="font-bold text-base md:text-2xl text-orange-500 dark:text-orange-400">--°C</div>
+    <div id="weather-desc" class="hidden md:block text-xs text-gray-400 dark:text-gray-500 mt-0.5">กำลังโหลด...</div>
   </div>
 
-  <!-- Card หลัก — max-w-xl จำกัดความกว้างสูงสุด / w-full ให้เต็มจอบนมือถือ -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 max-w-xl w-full transition-colors duration-300">
+  <!-- Page Background -->
+  <div class="min-h-screen bg-gray-200 dark:bg-gray-900 py-12 px-4 flex flex-col items-center transition-colors duration-300">
 
-    <!-- ชื่อเต็ม — text-4xl = ขนาดใหญ่สุดใน card นี้ -->
-    <h1 class="text-4xl font-bold text-gray-700 dark:text-gray-100 mb-2">นายธุวานนท์ อรรถสุภาพงศ์</h1>
+    <!-- Resume Paper -->
+    <div class="w-full max-w-[860px] bg-white dark:bg-gray-800 shadow-[0_8px_40px_rgba(0,0,0,0.14)] transition-colors duration-300">
 
-    <!-- ชื่อเล่น -->
-    <p class="text-2xl text-gray-500 dark:text-gray-400 mb-1 pb-1 pt-4">ชื่อเล่น: บิ๊ง</p>
+      <!-- Header -->
+      <div class="bg-gradient-to-br from-orange-700 to-orange-500
+                  flex flex-col items-center text-center gap-5 py-8 px-6
+                  sm:flex-row sm:text-left sm:gap-8 sm:py-10 sm:px-12">
 
-    <!-- โครงการและหน่วยงาน — text-blue-600 ใช้เน้นให้เห็นชัด -->
-    <p class="text-2xl text-blue-600 dark:text-blue-400 font-bold mb-1">โครงการ Gem รุ่นที่ 6 · PEA Innovation HUB กนว.</p>
+        <!-- Avatar -->
+        <div class="w-[110px] h-[110px] rounded-full overflow-hidden border-4 border-white/40 shrink-0
+                    bg-orange-700 flex items-center justify-center text-[2rem] font-bold text-orange-200 relative">
+          <img id="profileImg"
+            src="assets/profile.jpg"
+            alt="รูปโปรไฟล์"
+            class="w-full h-full object-cover block absolute inset-0"
+            onerror="this.style.display='none'; document.getElementById('initials').style.display='flex';"
+            onload="document.getElementById('initials').style.display='none';">
+          <span id="initials"
+            style="display:none; position:absolute; inset:0; align-items:center; justify-content:center;">
+            บง
+          </span>
+        </div>
 
-    <!-- ข้อมูลเพิ่มเติม — text-gray-400 สีจางกว่าเพื่อแสดง priority ต่ำกว่า -->
-    <p class="text-xl text-gray-400 dark:text-gray-500 text-sm mb-4">กำลังจะย้ายเข้า Easy D · สายงาน ธต.</p>
+        <!-- Name & Info -->
+        <div>
+          <h1 class="text-[1.9rem] font-bold text-white leading-tight tracking-[-0.01em]">
+            ธุวานนท์ อรรถสุภาพงศ์
+          </h1>
+          <p class="text-orange-200 text-base mt-1">
+            ชื่อเล่น: <strong class="text-white">บึง</strong>
+          </p>
+          <p class="text-orange-300 text-[0.95rem] font-semibold mt-2 tracking-wide">
+            ⚡ วิศวกรไฟฟ้า
+          </p>
+          <p class="text-orange-200/85 text-[0.82rem] mt-1.5">
+            PEA Innovation HUB · โครงการ Gem รุ่นที่ 6
+          </p>
+        </div>
 
-    <!-- เส้นคั่น — border-gray-200 สีอ่อน ไม่ดึงความสนใจ -->
-    <hr class="border-gray-200 dark:border-gray-700 mb-4">
+      </div>
+      <!-- END HEADER -->
 
-    <!-- ปุ่มเปิด/ปิด section เหตุผล — id ใช้ให้ JavaScript ค้นหา element นี้ -->
-    <button id="toggleBtn" class="bg-blue-600
-      hover:bg-blue-800
-      dark:bg-blue-700
-      dark:hover:bg-blue-500
-      text-white
-      px-4
-      py-2
-      rounded
-      cursor-pointer
-      text-base">
-      เหตุผลที่อยากเข้า DevPool ▼
-      <!-- ลูกศร ▼/▲ จะถูก JavaScript เปลี่ยนตามสถานะ expand/collapse -->
-    </button>
 
-    <!-- Section เหตุผล — hidden = ซ่อนอยู่โดย default / border-l-4 = เส้นซ้ายเน้นข้อความ -->
-    <div id="reason"
-      class="hidden mt-4 p-4 bg-gray-50 dark:bg-gray-700 border-l-4 border-blue-600 dark:border-blue-400 rounded leading-relaxed text-gray-700 dark:text-gray-300">
+      <!-- Body Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-[220px_1fr]">
 
-      <!-- เนื้อหาเหตุผล — <strong> ทำให้ชื่อผลิตภัณฑ์เป็นตัวหนา -->
-      <p>
-        ปัจจุบันเป็นทีมพัฒนาผลิตภัณฑ์ <strong>Hinghoihome</strong>
-        ซึ่งเป็นผลิตภัณฑ์เชิงพาณิชย์ของ กฟภ.
-        จึงต้องการมีความรู้ความสามารถในการพัฒนาตัวผลิตภัณฑ์ด้วยตัวเอง
-        และเข้าใจบริบทของ DevPool ที่มาพัฒนาให้
-        และถ้ามีโอกาส ก็ต้องการที่จะทำงานอื่น ๆ ให้ กฟภ. เช่นกัน
-      </p>
+        <!-- Sidebar -->
+        <aside class="bg-slate-100 dark:bg-gray-900
+                      py-8 px-6
+                      border-b border-slate-200 dark:border-gray-700
+                      sm:border-b-0 sm:border-r
+                      transition-colors duration-300">
+
+          <!-- Skills -->
+          <div class="mb-7">
+            <p class="text-[0.68rem] font-bold tracking-[0.12em] uppercase
+                      text-orange-600 dark:text-orange-400
+                      border-b-2 border-orange-600 dark:border-orange-400
+                      pb-[5px] mb-[14px] transition-colors duration-300">
+              Skills
+            </p>
+            <div class="flex flex-wrap">
+              <span class="inline-block px-3 py-0.5 rounded-full text-[0.78rem] font-semibold
+                           bg-orange-100 dark:bg-[#431407]
+                           text-orange-900 dark:text-orange-300
+                           border border-orange-200 dark:border-[#7c2d12]
+                           mr-1.5 mb-1.5">IoT</span>
+              <span class="inline-block px-3 py-0.5 rounded-full text-[0.78rem] font-semibold
+                           bg-orange-100 dark:bg-[#431407]
+                           text-orange-900 dark:text-orange-300
+                           border border-orange-200 dark:border-[#7c2d12]
+                           mr-1.5 mb-1.5">ESP32</span>
+              <span class="inline-block px-3 py-0.5 rounded-full text-[0.78rem] font-semibold
+                           bg-orange-100 dark:bg-[#431407]
+                           text-orange-900 dark:text-orange-300
+                           border border-orange-200 dark:border-[#7c2d12]
+                           mr-1.5 mb-1.5">Hinghoihome</span>
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div>
+            <p class="text-[0.68rem] font-bold tracking-[0.12em] uppercase
+                      text-orange-600 dark:text-orange-400
+                      border-b-2 border-orange-600 dark:border-orange-400
+                      pb-[5px] mb-[14px] transition-colors duration-300">
+              Links
+            </p>
+
+            <a href="https://github.com/Thuwanon01/buffit" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 px-3 py-2 rounded-lg no-underline
+                     text-[0.82rem] font-semibold
+                     text-gray-700 dark:text-gray-300
+                     border border-gray-300 dark:border-gray-600
+                     bg-white dark:bg-gray-800
+                     mb-2
+                     hover:bg-orange-50 dark:hover:bg-[#431407]
+                     hover:text-orange-600 dark:hover:text-orange-400
+                     hover:border-orange-300 dark:hover:border-orange-500
+                     transition-colors duration-200">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" class="shrink-0">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              GitHub / buffit
+            </a>
+
+            <a href="https://buffit.life" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 px-3 py-2 rounded-lg no-underline
+                     text-[0.82rem] font-semibold
+                     text-gray-700 dark:text-gray-300
+                     border border-gray-300 dark:border-gray-600
+                     bg-white dark:bg-gray-800
+                     mb-2
+                     hover:bg-orange-50 dark:hover:bg-[#431407]
+                     hover:text-orange-600 dark:hover:text-orange-400
+                     hover:border-orange-300 dark:hover:border-orange-500
+                     transition-colors duration-200">
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true" class="shrink-0">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
+              </svg>
+              buffit.life
+            </a>
+
+            <a href="https://app.buffit.life" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 px-3 py-2 rounded-lg no-underline
+                     text-[0.82rem] font-semibold
+                     text-gray-700 dark:text-gray-300
+                     border border-gray-300 dark:border-gray-600
+                     bg-white dark:bg-gray-800
+                     mb-2
+                     hover:bg-orange-50 dark:hover:bg-[#431407]
+                     hover:text-orange-600 dark:hover:text-orange-400
+                     hover:border-orange-300 dark:hover:border-orange-500
+                     transition-colors duration-200">
+              <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true" class="shrink-0">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+              app.buffit.life
+            </a>
+
+          </div>
+
+        </aside>
+        <!-- END SIDEBAR -->
+
+
+        <!-- Main Content -->
+        <main class="py-8 px-6 sm:px-9 transition-colors duration-300">
+
+          <!-- Organization -->
+          <div class="mb-7">
+            <p class="text-[0.68rem] font-bold tracking-[0.12em] uppercase
+                      text-orange-600 dark:text-orange-400
+                      border-b-2 border-orange-600 dark:border-orange-400
+                      pb-[5px] mb-[14px] transition-colors duration-300">
+              สังกัด
+            </p>
+
+            <div class="flex items-start gap-[10px] py-[10px]
+                        border-b border-gray-100 dark:border-gray-700
+                        text-[0.9rem] text-gray-700 dark:text-gray-300
+                        transition-colors duration-300">
+              <span class="text-[1.1rem] shrink-0">🏢</span>
+              <div>
+                <span class="font-semibold">โครงการ Gem รุ่นที่ 6</span>
+                <span class="text-gray-500 dark:text-gray-400"> · PEA Innovation HUB กนว.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-[10px] py-[10px]
+                        text-[0.9rem] text-gray-700 dark:text-gray-300
+                        transition-colors duration-300">
+              <span class="text-[1.1rem] shrink-0">🔄</span>
+              <div>
+                กำลังจะย้ายเข้า
+                <span class="font-semibold text-gray-800 dark:text-gray-100"> Easy D</span>
+                <span class="text-gray-500 dark:text-gray-400"> · สายงาน ธต.</span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="border-gray-200 dark:border-gray-700 mb-6 transition-colors duration-300">
+
+          <!-- Projects -->
+          <div class="mb-7">
+            <p class="text-[0.68rem] font-bold tracking-[0.12em] uppercase
+                      text-orange-600 dark:text-orange-400
+                      border-b-2 border-orange-600 dark:border-orange-400
+                      pb-[5px] mb-[14px] transition-colors duration-300">
+              Projects
+            </p>
+
+            <div class="flex items-start gap-[14px] p-4
+                        border border-gray-200 dark:border-gray-700
+                        rounded-[10px] bg-gray-50 dark:bg-gray-900
+                        transition-colors duration-300">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"
+                class="text-gray-700 dark:text-gray-300 shrink-0 mt-0.5" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <div>
+                <div class="font-bold text-base text-gray-800 dark:text-gray-100">Buffit</div>
+                <div class="text-[0.85rem] mt-1.5 leading-[1.65] text-gray-600 dark:text-gray-400">
+                  แอปออกกำลังกายแบบกลุ่ม บันทึก Workout สะสม Coin ร่วมกัน ถึง Group Goal ได้กินบุฟเฟ่ต์กับเพื่อน 🍱
+                </div>
+                <div class="text-[0.78rem] mt-2 italic text-gray-400 dark:text-gray-500">
+                  ทดลองใช้ได้จาก links ด้านซ้าย →
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="border-gray-200 dark:border-gray-700 mb-6 transition-colors duration-300">
+
+          <!-- DevPool -->
+          <div>
+            <p class="text-[0.68rem] font-bold tracking-[0.12em] uppercase
+                      text-orange-600 dark:text-orange-400
+                      border-b-2 border-orange-600 dark:border-orange-400
+                      pb-[5px] mb-[14px] transition-colors duration-300">
+              DevPool
+            </p>
+
+            <button id="toggleBtn"
+              class="flex items-center gap-2
+                     bg-orange-500 dark:bg-orange-600
+                     hover:bg-orange-600 dark:hover:bg-orange-500
+                     text-white text-sm font-semibold
+                     px-5 py-2.5 rounded-xl
+                     cursor-pointer select-none
+                     w-full md:w-auto justify-center md:justify-start
+                     transition-colors duration-200">
+              <span>เหตุผลที่อยากเข้า DevPool</span>
+              <span id="toggleArrow">▼</span>
+            </button>
+
+            <div id="reason"
+              class="hidden mt-[14px] p-4
+                     bg-orange-50 dark:bg-orange-600/10
+                     border-l-4 border-orange-500 dark:border-orange-400
+                     rounded-r-lg leading-[1.8]
+                     text-gray-700 dark:text-gray-300 text-[0.92rem]
+                     transition-colors duration-300">
+              <p>
+                ปัจจุบันเป็นทีมพัฒนาผลิตภัณฑ์
+                <strong class="text-gray-900 dark:text-white">Hinghoihome</strong>
+                ซึ่งเป็นผลิตภัณฑ์เชิงพาณิชย์ของ กฟภ.
+                จึงต้องการมีความรู้ความสามารถในการพัฒนาตัวผลิตภัณฑ์ด้วยตัวเอง
+                และเข้าใจบริบทของ DevPool ที่มาพัฒนาให้
+                และถ้ามีโอกาส ก็ต้องการที่จะทำงานอื่น ๆ ให้ กฟภ. เช่นกัน
+              </p>
+            </div>
+
+          </div>
+
+        </main>
+        <!-- END MAIN CONTENT -->
+
+      </div>
+      <!-- END BODY GRID -->
 
     </div>
+    <!-- END RESUME PAPER -->
 
   </div>
+  <!-- END PAGE BG -->
 
-  <!-- โหลด JavaScript แยกไฟล์ — วางท้าย <body> เพื่อให้ HTML โหลดก่อนเสมอ -->
+
   <script src="script.js"></script>
 
 </body>
-
 </html>
