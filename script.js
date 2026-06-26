@@ -38,9 +38,10 @@ document.getElementById('darkModeBtn').addEventListener('click', toggleDarkMode)
 initDarkModeBtn();
 
 const toggleBtn  = document.getElementById('toggleBtn');
-const reasonBlock = document.getElementById('reason');
+const reasonBlock = document.getElementById('reasonDevpool');
 const arrowSpan  = document.getElementById('toggleArrow');
 toggleBtn.addEventListener('click', function () {
   const isHidden = reasonBlock.classList.toggle('hidden');
   arrowSpan.textContent = isHidden ? '▼' : '▲';
 });
+

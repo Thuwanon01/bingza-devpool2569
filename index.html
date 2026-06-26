@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <!-- บอก browser ว่าเป็น HTML5 -->
 
-<html lang="th">
+<html lang="th" >
 <!-- html = root element ของทั้งหน้า -->
-<!-- lang="th" = บอก browser ว่าภาษาหลักของหน้าคือภาษาไทย (ช่วย screen reader และ SEO) -->
 
 <head>
 <!-- head = ส่วนหัวของ document ไม่แสดงบนหน้าเว็บ แต่เก็บ metadata และ config ต่าง ๆ -->
 
   <meta charset="UTF-8">
   <!-- meta charset = กำหนดการเข้ารหัสตัวอักษร -->
-  <!-- charset="UTF-8" = ใช้ UTF-8 รองรับภาษาไทยและทุกภาษาทั่วโลก -->
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- meta viewport = ควบคุมการแสดงผลบนมือถือ -->
-  <!-- name="viewport" = บอกว่า meta นี้เกี่ยวกับ viewport (พื้นที่แสดงผล) -->
-  <!-- content="width=device-width" = ให้ความกว้างหน้าเว็บเท่ากับความกว้างของหน้าจออุปกรณ์ -->
-  <!-- initial-scale=1.0 = ไม่ zoom in/out ตอนเปิดครั้งแรก (scale = 1 = 100%) -->
 
   <title>Resume — ธุวานนท์ อรรถสุภาพงศ์</title>
   <!-- title = ข้อความที่แสดงบน Tab ของ browser และผล Google Search -->
@@ -25,34 +20,23 @@
     // script = ใส่ JavaScript ใน HTML ได้เลย
     // วาง script นี้ไว้ใน <head> ก่อน CSS โหลด เพื่อป้องกัน flash of light mode
     if (localStorage.getItem('theme') === 'dark') {
-      // localStorage.getItem('theme') = อ่านค่า key 'theme' จาก localStorage (เก็บค่าถาวรใน browser)
       document.documentElement.classList.add('dark');
-      // document.documentElement = หมายถึง <html> element
-      // classList.add('dark') = เพิ่ม class 'dark' ให้ <html> เพื่อเปิด dark mode ของ Tailwind
     }
   </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- script src = โหลด JavaScript จาก URL ภายนอก -->
-  <!-- src="https://cdn.tailwindcss.com" = โหลด Tailwind CSS จาก CDN (ไม่ต้องติดตั้ง) -->
 
   <script>tailwind.config = { darkMode: 'class' }</script>
   <!-- tailwind.config = ตั้งค่า Tailwind CSS -->
-  <!-- darkMode: 'class' = เปิด dark mode ด้วยการเพิ่ม class 'dark' ที่ <html> (ไม่ใช้ระบบของ OS) -->
 
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- link = เชื่อมโยงไฟล์ภายนอก -->
-  <!-- href = URL ของไฟล์ที่จะโหลด (ที่นี่คือ Google Fonts) -->
-  <!-- family=Sarabun = โหลด font ชื่อ Sarabun (font ภาษาไทย) -->
-  <!-- wght@300;400;600;700 = โหลด font น้ำหนัก 300(บาง), 400(ปกติ), 600(กึ่งหนา), 700(หนา) -->
-  <!-- display=swap = ระหว่างโหลด font ให้แสดง font สำรองก่อน (ป้องกันข้อความหาย) -->
-  <!-- rel="stylesheet" = บอกว่าไฟล์ที่โหลดคือ CSS stylesheet -->
 
 </head>
 
 <body class="font-['Sarabun']">
 <!-- body = ส่วนเนื้อหาที่แสดงบนหน้าเว็บทั้งหมด -->
-<!-- font-['Sarabun'] = ตั้ง font ทั้งหน้าให้เป็น Sarabun (Tailwind arbitrary value) -->
 
 
   <!-- ============================================================ -->
@@ -67,26 +51,6 @@
            hover:shadow-lg cursor-pointer select-none
            transition-colors duration-300">
     <!-- button = ปุ่มกดได้ -->
-    <!-- id="darkModeBtn" = ชื่อ ID สำหรับ JavaScript ใช้ควบคุมปุ่มนี้ -->
-    <!-- fixed = position: fixed = ลอยอยู่กับที่ ไม่เลื่อนตามหน้า -->
-    <!-- top-4 = ห่างจากขอบบน 16px (4 × 4px) -->
-    <!-- left-4 = ห่างจากขอบซ้าย 16px -->
-    <!-- z-50 = z-index: 50 = ลอยอยู่เหนือ element อื่น ๆ -->
-    <!-- bg-white = พื้นหลังสีขาว (light mode) -->
-    <!-- dark:bg-gray-800 = พื้นหลังสีเทาเข้ม เมื่ออยู่ใน dark mode -->
-    <!-- text-gray-700 = ตัวอักษรสีเทาเข้ม (light mode) -->
-    <!-- dark:text-gray-200 = ตัวอักษรสีเทาอ่อน (dark mode) -->
-    <!-- px-3 = padding ซ้าย-ขวา 12px -->
-    <!-- py-2 = padding บน-ล่าง 8px -->
-    <!-- rounded-xl = มุมโค้ง border-radius ขนาด xl (12px) -->
-    <!-- shadow-md = เงาขนาดกลาง -->
-    <!-- text-sm = ขนาดตัวอักษรเล็ก (14px) -->
-    <!-- font-medium = ความหนา font ระดับกลาง (500) -->
-    <!-- hover:shadow-lg = เมื่อ hover เงาจะใหญ่ขึ้น -->
-    <!-- cursor-pointer = เปลี่ยน cursor เป็นรูปมือเมื่อ hover -->
-    <!-- select-none = ป้องกันการ highlight/select ข้อความด้วยเมาส์ -->
-    <!-- transition-colors = ทำให้การเปลี่ยนสี animate แบบ smooth -->
-    <!-- duration-300 = ระยะเวลา animation 300ms -->
     🌙 Dark Mode
   </button>
 
@@ -103,43 +67,12 @@
            text-gray-600 dark:text-gray-300
            transition-colors duration-300">
     <!-- div = กล่องทั่วไป ใช้จัดกลุ่ม element -->
-    <!-- id="weather-widget" = ID สำหรับ JavaScript ดึงข้อมูลอากาศมาใส่ -->
-    <!-- fixed = ลอยอยู่กับที่ ไม่เลื่อนตามหน้า -->
-    <!-- top-4 = ห่างจากขอบบน 16px -->
-    <!-- right-4 = ห่างจากขอบขวา 16px -->
-    <!-- z-50 = ลอยเหนือ element อื่น -->
-    <!-- min-w-[72px] = ความกว้างขั้นต่ำ 72px (จอเล็ก) -->
-    <!-- md:min-w-[150px] = ความกว้างขั้นต่ำ 150px (จอ md ขึ้นไป ≥ 768px) -->
-    <!-- bg-white = พื้นหลังขาว -->
-    <!-- dark:bg-gray-800 = พื้นหลังเทาเข้มใน dark mode -->
-    <!-- rounded-xl = มุมโค้ง 12px -->
-    <!-- shadow-md = เงาขนาดกลาง -->
-    <!-- px-2 py-2 = padding 8px รอบด้าน (จอเล็ก) -->
-    <!-- md:px-4 md:py-3 = padding ใหญ่ขึ้นบน md screen -->
-    <!-- text-gray-600 = ตัวอักษรสีเทา -->
-    <!-- dark:text-gray-300 = ตัวอักษรเทาอ่อนใน dark mode -->
-    <!-- transition-colors duration-300 = เปลี่ยนสีแบบ smooth ใน 300ms -->
 
     <div class="hidden md:block text-xs text-gray-400 dark:text-gray-500 mb-1">กฟภ. สำนักงานใหญ่</div>
-    <!-- hidden = ซ่อน (display: none) บน mobile -->
-    <!-- md:block = แสดง (display: block) บน md screen ขึ้นไป -->
-    <!-- text-xs = ตัวอักษรขนาดเล็กมาก (12px) -->
-    <!-- text-gray-400 = ตัวอักษรสีเทาอ่อน -->
-    <!-- dark:text-gray-500 = เทาเข้มกว่าหน่อยใน dark mode -->
-    <!-- mb-1 = margin ล่าง 4px -->
 
     <div id="weather-temp" class="font-bold text-base md:text-2xl text-orange-500 dark:text-orange-400">--°C</div>
-    <!-- id="weather-temp" = JavaScript จะเอาตัวเลขอุณหภูมิมาแทนที่ "--°C" -->
-    <!-- font-bold = ตัวหนา (font-weight: 700) -->
-    <!-- text-base = ขนาดตัวอักษรปกติ 16px (จอเล็ก) -->
-    <!-- md:text-2xl = ขนาด 24px บน md screen ขึ้นไป -->
-    <!-- text-orange-500 = ตัวอักษรสีส้ม -->
-    <!-- dark:text-orange-400 = ส้มอ่อนกว่าใน dark mode -->
 
     <div id="weather-desc" class="hidden md:block text-xs text-gray-400 dark:text-gray-500 mt-0.5">กำลังโหลด...</div>
-    <!-- id="weather-desc" = JavaScript จะนำคำอธิบายสภาพอากาศมาแทน -->
-    <!-- hidden md:block = ซ่อนบน mobile, แสดงบน md+ -->
-    <!-- mt-0.5 = margin บน 2px -->
 
   </div>
   <!-- END Weather Widget -->
@@ -149,10 +82,6 @@
   <!-- พื้นหลังทั้งหน้า -->
   <!-- ============================================================ -->
   <div class="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-  <!-- min-h-screen = ความสูงขั้นต่ำเต็มหน้าจอ (100vh) -->
-  <!-- bg-gray-100 = พื้นหลังสีเทาอ่อนมาก (light mode) -->
-  <!-- dark:bg-gray-900 = พื้นหลังสีเทาเกือบดำ (dark mode) -->
-  <!-- transition-colors duration-300 = เปลี่ยนสีแบบ smooth 300ms -->
 
 
     <!-- กล่องครอบเนื้อหาทั้งหมด -->
@@ -166,39 +95,11 @@
       <div class="bg-gradient-to-br from-orange-700 to-orange-500
                   flex flex-col items-center text-center gap-5 py-8 px-6
                   sm:flex-row sm:text-left sm:gap-8 sm:py-10 sm:px-12">
-        <!-- bg-gradient-to-br = พื้นหลังไล่สี จากซ้ายบน → ขวาล่าง (to bottom-right) -->
-        <!-- from-orange-700 = สีเริ่มต้นคือส้มเข้ม -->
-        <!-- to-orange-500 = สีสิ้นสุดคือส้มกลาง -->
-        <!-- flex = ใช้ Flexbox จัด layout ลูก ๆ -->
-        <!-- flex-col = จัด element ลูกแนวตั้ง (column) บน mobile -->
-        <!-- items-center = จัด element ลูกให้อยู่ตรงกลางแนวขวาง -->
-        <!-- text-center = ข้อความอยู่กึ่งกลาง (mobile) -->
-        <!-- gap-5 = ช่องว่างระหว่าง element ลูก 20px -->
-        <!-- py-8 = padding บน-ล่าง 32px -->
-        <!-- px-6 = padding ซ้าย-ขวา 24px -->
-        <!-- sm:flex-row = จัด element ลูกแนวนอน (row) บน sm screen ขึ้นไป (≥ 640px) -->
-        <!-- sm:text-left = ข้อความชิดซ้ายบน sm+ -->
-        <!-- sm:gap-8 = ช่องว่าง 32px บน sm+ -->
-        <!-- sm:py-10 = padding บน-ล่าง 40px บน sm+ -->
-        <!-- sm:px-12 = padding ซ้าย-ขวา 48px บน sm+ -->
 
 
         <!-- รูปโปรไฟล์ (วงกลม) -->
         <div class="w-[110px] h-[110px] rounded-full overflow-hidden border-4 border-white/40 shrink-0
                     bg-orange-700 flex items-center justify-center text-[2rem] font-bold text-orange-200 relative">
-          <!-- w-[110px] = ความกว้าง 110px (arbitrary value ของ Tailwind) -->
-          <!-- h-[110px] = ความสูง 110px -->
-          <!-- rounded-full = มุมโค้งสูงสุด = วงกลมสมบูรณ์ -->
-          <!-- overflow-hidden = ซ่อนเนื้อหาที่เกินขอบกล่อง (ทำให้รูปถูกครอบวงกลม) -->
-          <!-- border-4 = เส้นขอบหนา 4px -->
-          <!-- border-white/40 = เส้นขอบสีขาว ความโปร่งใส 40% -->
-          <!-- shrink-0 = ไม่ให้ element นี้หดเล็กลงเมื่อพื้นที่ไม่พอ (ใน Flexbox) -->
-          <!-- bg-orange-700 = พื้นหลังส้มเข้ม (สำรองกรณีรูปโหลดไม่ขึ้น) -->
-          <!-- flex items-center justify-center = จัด initials อักษรย่อให้อยู่กึ่งกลางวงกลม -->
-          <!-- text-[2rem] = ขนาดตัวอักษร 32px (สำหรับ initials) -->
-          <!-- font-bold = ตัวหนา -->
-          <!-- text-orange-200 = ตัวอักษรสีส้มอ่อน -->
-          <!-- relative = position: relative เพื่อให้ลูกที่ใช้ absolute วางตำแหน่งได้ -->
 
           <img id="profileImg"
             src="assets/profile.jpg"
@@ -207,27 +108,12 @@
             onerror="this.style.display='none'; document.getElementById('initials').style.display='flex';"
             onload="document.getElementById('initials').style.display='none';">
           <!-- img = แสดงรูปภาพ -->
-          <!-- id="profileImg" = ชื่อ ID สำหรับ JavaScript -->
-          <!-- src="assets/profile.jpg" = path ของไฟล์รูปที่จะแสดง -->
-          <!-- alt="รูปโปรไฟล์" = ข้อความสำรองเมื่อรูปโหลดไม่ขึ้น (สำคัญสำหรับ accessibility) -->
-          <!-- w-full = ความกว้างเต็ม 100% ของ container -->
-          <!-- h-full = ความสูงเต็ม 100% ของ container -->
-          <!-- object-cover = ย่อ/ขยายรูปให้เต็มกล่องโดยไม่บิดเบือนสัดส่วน (crop ถ้าจำเป็น) -->
-          <!-- block = display: block (ป้องกัน gap ใต้รูปที่เกิดจาก inline) -->
-          <!-- absolute = position: absolute = วางทับ element อื่นโดยอ้างอิงจาก parent ที่ relative -->
-          <!-- inset-0 = top:0, right:0, bottom:0, left:0 = ขยายเต็ม parent -->
-          <!-- onerror = JavaScript ที่รันเมื่อรูปโหลดไม่ขึ้น: ซ่อนรูป + แสดง initials แทน -->
-          <!-- onload = JavaScript ที่รันเมื่อรูปโหลดสำเร็จ: ซ่อน initials -->
 
           <span id="initials"
             style="display:none; position:absolute; inset:0; align-items:center; justify-content:center;">
             Bing
           </span>
           <!-- span = กล่อง inline สำหรับใส่ข้อความ "บง" (อักษรย่อสำรองกรณีไม่มีรูป) -->
-          <!-- id="initials" = JavaScript ใช้ toggle แสดง/ซ่อน -->
-          <!-- style="display:none" = ซ่อนไว้ก่อน (แสดงเมื่อรูปโหลดไม่ขึ้น) -->
-          <!-- position:absolute; inset:0 = ขยายเต็มวงกลม -->
-          <!-- align-items:center; justify-content:center = จัดข้อความให้ตรงกลาง -->
 
         </div>
         <!-- END Avatar -->
@@ -235,43 +121,24 @@
 
         <!-- ชื่อและข้อมูลส่วนตัว -->
         <div>
-        <!-- div ครอบข้อความชื่อ ตำแหน่ง และสังกัด -->
 
           <h1 class="text-[1.9rem] font-bold text-white leading-tight tracking-[-0.01em]">
             ธุวานนท์ อรรถสุภาพงศ์
           </h1>
           <!-- h1 = หัวข้อใหญ่สุด (Heading level 1) มีความสำคัญ SEO สูงสุด -->
-          <!-- text-[1.9rem] = ขนาดตัวอักษร 30.4px -->
-          <!-- font-bold = ตัวหนา (700) -->
-          <!-- text-white = ตัวอักษรสีขาว -->
-          <!-- leading-tight = ระยะห่างระหว่างบรรทัดแน่น (line-height: 1.25) -->
-          <!-- tracking-[-0.01em] = ระยะห่างระหว่างตัวอักษรแคบลงเล็กน้อย (letter-spacing) -->
 
           <p class="text-orange-200 text-base mt-1">
             ชื่อเล่น: <strong class="text-white">บิ๊ง</strong>
           </p>
           <!-- p = paragraph ข้อความทั่วไป -->
-          <!-- text-orange-200 = ตัวอักษรสีส้มอ่อนมาก -->
-          <!-- text-base = ขนาด 16px -->
-          <!-- mt-1 = margin บน 4px -->
-          <!-- strong = ข้อความสำคัญ (แสดงเป็นตัวหนา + มีความหมาย semantic) -->
-          <!-- text-white = ตัวอักษรสีขาว (ชื่อเล่น "บึง" เน้นให้เด่น) -->
 
           <p class="text-orange-300 text-[0.95rem] font-semibold mt-2 tracking-wide">
             ⚡ วิศวกรไฟฟ้า
           </p>
-          <!-- text-orange-300 = สีส้มอ่อน -->
-          <!-- text-[0.95rem] = ขนาด 15.2px -->
-          <!-- font-semibold = ตัวกึ่งหนา (600) -->
-          <!-- mt-2 = margin บน 8px -->
-          <!-- tracking-wide = ระยะห่างตัวอักษรกว้างขึ้น (letter-spacing: 0.025em) -->
 
           <p class="text-orange-200/85 text-[0.82rem] mt-1.5">
             PEA Innovation HUB · โครงการ Gem รุ่นที่ 6
           </p>
-          <!-- text-orange-200/85 = สีส้มอ่อนมาก ความโปร่งใส 85% -->
-          <!-- text-[0.82rem] = ขนาด 13.12px (เล็ก) -->
-          <!-- mt-1.5 = margin บน 6px -->
 
         </div>
         <!-- END Name & Info -->
@@ -284,11 +151,6 @@
       <!-- Body Grid — แบ่ง 2 คอลัมน์: Sidebar + Main -->
       <!-- ============================================================ -->
       <div class="grid grid-cols-1 sm:grid-cols-[220px_1fr]">
-      <!-- grid = ใช้ CSS Grid จัด layout -->
-      <!-- grid-cols-1 = 1 คอลัมน์ (mobile: sidebar อยู่บน, main อยู่ล่าง) -->
-      <!-- sm:grid-cols-[220px_1fr] = 2 คอลัมน์บน sm+: -->
-      <!--   คอลัมน์แรก = 220px (Sidebar) -->
-      <!--   คอลัมน์สอง = 1fr = พื้นที่ที่เหลือทั้งหมด (Main content) -->
 
 
         <!-- ============================================================ -->
@@ -300,21 +162,10 @@
                       sm:border-b-0 sm:border-r
                       transition-colors duration-300">
           <!-- aside = semantic element สำหรับเนื้อหาเสริมที่ไม่ใช่เนื้อหาหลัก -->
-          <!-- bg-white = พื้นหลังขาว (light mode) -->
-          <!-- dark:bg-gray-800 = พื้นหลังเทาเข้ม (dark mode) -->
-          <!-- py-8 = padding บน-ล่าง 32px -->
-          <!-- px-6 = padding ซ้าย-ขวา 24px -->
-          <!-- border-b = เส้นขอบด้านล่าง (mobile: คั่นระหว่าง sidebar กับ main) -->
-          <!-- border-slate-200 = สีเส้นขอบเทา-น้ำเงินอ่อน -->
-          <!-- dark:border-gray-700 = เส้นขอบเทาเข้มใน dark mode -->
-          <!-- sm:border-b-0 = ลบเส้นขอบล่างบน sm+ (เพราะเปลี่ยนไปชิดขวาแทน) -->
-          <!-- sm:border-r = เพิ่มเส้นขอบขวาบน sm+ (คั่นระหว่าง sidebar กับ main) -->
-          <!-- transition-colors duration-300 = เปลี่ยนสีแบบ smooth -->
 
 
           <!-- หัวข้อ Skills -->
           <div class="mb-7">
-          <!-- mb-7 = margin ล่าง 28px (เว้นระยะก่อนส่วน Links) -->
 
             <p class="text-[0.68rem] font-bold tracking-[0.12em] uppercase
                       text-orange-600 dark:text-orange-400
@@ -323,20 +174,8 @@
               Skills
             </p>
             <!-- p = หัวข้อหมวด "Skills" -->
-            <!-- text-[0.68rem] = ขนาดเล็กมาก 10.88px (label สไตล์) -->
-            <!-- font-bold = ตัวหนา -->
-            <!-- tracking-[0.12em] = ระยะห่างตัวอักษรกว้าง ทำให้ดู "formal" -->
-            <!-- uppercase = แปลงตัวอักษรเป็นพิมพ์ใหญ่ทั้งหมด -->
-            <!-- text-orange-600 = สีส้มเข้ม (light mode) -->
-            <!-- dark:text-orange-400 = สีส้มกลาง (dark mode) -->
-            <!-- border-b-2 = เส้นใต้หนา 2px -->
-            <!-- border-orange-600 dark:border-orange-400 = สีเส้นใต้ตามธีม -->
-            <!-- pb-[5px] = padding ล่าง 5px (ระหว่างข้อความกับเส้น) -->
-            <!-- mb-[14px] = margin ล่าง 14px (ระหว่างหัวข้อกับ tags) -->
 
             <div class="flex flex-wrap">
-            <!-- flex = Flexbox -->
-            <!-- flex-wrap = ให้ items wrap ขึ้นบรรทัดใหม่เมื่อพื้นที่ไม่พอ -->
 
               <!-- Skill Tag: IoT -->
               <span class="inline-block px-3 py-0.5 rounded-full text-[0.78rem] font-semibold
@@ -344,30 +183,15 @@
                            text-orange-900 dark:text-orange-300
                            border border-orange-200 dark:border-[#7c2d12]
                            mr-1.5 mb-1.5">IoT</span>
-              <!-- span = กล่อง inline สำหรับ skill tag -->
-              <!-- inline-block = แสดงแบบ block แต่อยู่ใน flow ของ text -->
-              <!-- px-3 = padding ซ้าย-ขวา 12px -->
-              <!-- py-0.5 = padding บน-ล่าง 2px -->
-              <!-- rounded-full = มุมโค้งสูงสุด ทำให้เป็น pill shape -->
-              <!-- text-[0.78rem] = ขนาดตัวอักษร 12.48px -->
-              <!-- font-semibold = ตัวกึ่งหนา -->
-              <!-- bg-orange-100 = พื้นหลังส้มอ่อนมาก (light mode) -->
-              <!-- dark:bg-[#431407] = พื้นหลังส้มเข้มมาก (dark mode) [arbitrary hex color] -->
-              <!-- text-orange-900 = ตัวอักษรส้มเข้มมาก (light mode) -->
-              <!-- dark:text-orange-300 = ตัวอักษรส้มกลาง (dark mode) -->
-              <!-- border border-orange-200 = เส้นขอบส้มอ่อน -->
-              <!-- dark:border-[#7c2d12] = เส้นขอบส้มเข้ม (dark mode) -->
-              <!-- mr-1.5 = margin ขวา 6px (ระยะห่างจาก tag ถัดไป) -->
-              <!-- mb-1.5 = margin ล่าง 6px (ระยะห่างเมื่อ wrap ขึ้นบรรทัดใหม่) -->
 
-              <!-- Skill Tag: ESP32 (attributes เหมือน IoT ทุกอย่าง) -->
+              <!-- Skill Tag: ESP32 -->
               <span class="inline-block px-3 py-0.5 rounded-full text-[0.78rem] font-semibold
                            bg-orange-100 dark:bg-[#431407]
                            text-orange-900 dark:text-orange-300
                            border border-orange-200 dark:border-[#7c2d12]
                            mr-1.5 mb-1.5">ESP32</span>
 
-              <!-- Skill Tag: Hinghoihome (attributes เหมือน IoT ทุกอย่าง) -->
+              <!-- Skill Tag: Hinghoihome -->
               <span class="inline-block px-3 py-0.5 rounded-full text-[0.78rem] font-semibold
                            bg-orange-100 dark:bg-[#431407]
                            text-orange-900 dark:text-orange-300
@@ -390,7 +214,7 @@
                       pb-[5px] mb-[14px] transition-colors duration-300">
               Links
             </p>
-            <!-- p = หัวข้อหมวด "Links" — attributes เหมือนกับหัวข้อ Skills ทุกอย่าง -->
+            <!-- p = หัวข้อหมวด "Links" -->
 
 
             <!-- Link: Portfolio Repo (หลัก — ส่งกรรมการ) -->
@@ -425,40 +249,9 @@
                      hover:border-orange-300 dark:hover:border-orange-500
                      transition-colors duration-200">
               <!-- a = anchor (ลิงก์) -->
-              <!-- href = URL ปลายทางที่จะไปเมื่อคลิก -->
-              <!-- target="_blank" = เปิดลิงก์ใน tab ใหม่ -->
-              <!-- rel="noopener noreferrer" = ความปลอดภัย: ป้องกันหน้าปลายทางเข้าถึง window ของเรา -->
-              <!-- flex = Flexbox จัด icon + ข้อความในบรรทัดเดียว -->
-              <!-- items-center = จัด icon กับข้อความให้อยู่กึ่งกลางแนวตั้ง -->
-              <!-- gap-2 = ช่องว่างระหว่าง icon กับข้อความ 8px -->
-              <!-- px-3 = padding ซ้าย-ขวา 12px -->
-              <!-- py-2 = padding บน-ล่าง 8px -->
-              <!-- rounded-lg = มุมโค้ง 8px -->
-              <!-- no-underline = ไม่แสดงเส้นใต้ link (ค่าปกติของ a) -->
-              <!-- text-[0.82rem] = ขนาดตัวอักษร 13.12px -->
-              <!-- font-semibold = ตัวกึ่งหนา -->
-              <!-- text-gray-700 = สีเทาเข้ม (light mode) -->
-              <!-- dark:text-gray-300 = สีเทาอ่อน (dark mode) -->
-              <!-- border border-gray-300 = เส้นขอบเทา -->
-              <!-- dark:border-gray-600 = เส้นขอบเทาเข้มกว่า (dark mode) -->
-              <!-- bg-gray-50 = พื้นหลังเทาอ่อนมาก -->
-              <!-- dark:bg-gray-700 = พื้นหลังเทาเข้ม (dark mode) -->
-              <!-- mb-2 = margin ล่าง 8px (ระยะห่างระหว่าง link กับ link ถัดไป) -->
-              <!-- hover:bg-orange-50 = พื้นหลังส้มอ่อนมากเมื่อ hover -->
-              <!-- dark:hover:bg-[#431407] = พื้นหลัง dark เมื่อ hover (dark mode) -->
-              <!-- hover:text-orange-600 = ตัวอักษรส้มเมื่อ hover -->
-              <!-- hover:border-orange-300 = เส้นขอบส้มเมื่อ hover -->
-              <!-- transition-colors duration-200 = เปลี่ยนสีแบบ smooth 200ms -->
-
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true" class="shrink-0">
                 <!-- svg = ไอคอน vector (GitHub logo) -->
-                <!-- viewBox="0 0 24 24" = พื้นที่วาด SVG ขนาด 24×24 units -->
-                <!-- width="16" height="16" = แสดงขนาด 16×16 pixels -->
-                <!-- fill="currentColor" = สี fill ตามสีตัวอักษรปัจจุบัน (รับ class text-* ได้) -->
-                <!-- aria-hidden="true" = ซ่อนจาก screen reader (เพราะ icon ตกแต่งเท่านั้น) -->
-                <!-- class="shrink-0" = ไม่ให้ icon หดเมื่อพื้นที่ไม่พอ -->
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                <!-- path = เส้นทางวาด shape ของ icon (ข้อมูล vector จาก SVG spec) -->
               </svg>
               GitHub / buffit
             </a>
@@ -476,11 +269,9 @@
                      hover:text-orange-600 dark:hover:text-orange-400
                      hover:border-orange-300 dark:hover:border-orange-500
                      transition-colors duration-200">
-              <!-- a = ลิงก์ไปหน้าหลัก buffit.life — attributes เหมือน GitHub link ทุกอย่าง -->
+              <!-- a = ลิงก์ไปหน้าหลัก buffit.life -->
               <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true" class="shrink-0">
-                <!-- viewBox="0 0 20 20" = พื้นที่วาด SVG ขนาด 20×20 units (icon นี้ใช้ grid 20 แทน 24) -->
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"/>
-                <!-- fill-rule="evenodd" / clip-rule="evenodd" = กฎการเติมสีใน path ที่ซับซ้อน (icon โลก) -->
               </svg>
               buffit.life
             </a>
@@ -498,10 +289,9 @@
                      hover:text-orange-600 dark:hover:text-orange-400
                      hover:border-orange-300 dark:hover:border-orange-500
                      transition-colors duration-200">
-              <!-- a = ลิงก์ไปหน้า app — attributes เหมือน GitHub link ทุกอย่าง -->
+              <!-- a = ลิงก์ไปหน้า app -->
               <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true" class="shrink-0">
                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                <!-- icon ลูกศรชี้ขวา (arrow right) -->
               </svg>
               app.buffit.life
             </a>
@@ -518,15 +308,10 @@
         <!-- ============================================================ -->
         <main class="py-8 px-6 sm:px-9 transition-colors duration-300">
           <!-- main = semantic element สำหรับเนื้อหาหลักของหน้า -->
-          <!-- py-8 = padding บน-ล่าง 32px -->
-          <!-- px-6 = padding ซ้าย-ขวา 24px -->
-          <!-- sm:px-9 = padding ซ้าย-ขวา 36px บน sm+ -->
-          <!-- transition-colors duration-300 = เปลี่ยนสีแบบ smooth -->
 
 
           <!-- หมวด: สังกัด -->
           <div class="mb-7">
-          <!-- mb-7 = margin ล่าง 28px -->
 
             <p class="text-[0.68rem] font-bold tracking-[0.12em] uppercase
                       text-orange-600 dark:text-orange-400
@@ -534,7 +319,7 @@
                       pb-[5px] mb-[14px] transition-colors duration-300">
               สังกัด
             </p>
-            <!-- p = หัวข้อหมวด "สังกัด" — style เหมือน Skills / Links ทุกอย่าง -->
+            <!-- p = หัวข้อหมวด "สังกัด" -->
 
 
             <!-- แถวข้อมูลสังกัด: Gem -->
@@ -542,27 +327,13 @@
                         border-b border-gray-100 dark:border-gray-700
                         text-[0.9rem] text-gray-700 dark:text-gray-300
                         transition-colors duration-300">
-              <!-- flex = Flexbox จัด icon emoji + ข้อความในแถวเดียว -->
-              <!-- items-start = จัด element ลูกชิดด้านบน (ป้องกัน emoji ยืด) -->
-              <!-- gap-[10px] = ช่องว่างระหว่าง icon กับข้อความ 10px -->
-              <!-- py-[10px] = padding บน-ล่าง 10px -->
-              <!-- border-b = เส้นขอบด้านล่าง (คั่นระหว่างแถว) -->
-              <!-- border-gray-100 = เส้นขอบเทาอ่อนมาก (light mode) -->
-              <!-- dark:border-gray-700 = เส้นขอบเทาเข้ม (dark mode) -->
-              <!-- text-[0.9rem] = ขนาด 14.4px -->
-              <!-- text-gray-700 / dark:text-gray-300 = สีตัวอักษรตามธีม -->
 
               <span class="text-[1.1rem] shrink-0">🏢</span>
               <!-- span = กล่อง inline สำหรับ emoji icon -->
-              <!-- text-[1.1rem] = ขนาด emoji 17.6px -->
-              <!-- shrink-0 = ไม่ให้ emoji หดเมื่อพื้นที่ไม่พอ -->
 
               <div>
                 <span class="font-semibold">โครงการ Gem รุ่นที่ 6</span>
-                <!-- font-semibold = ตัวกึ่งหนา สำหรับชื่อโครงการ -->
                 <span class="text-gray-500 dark:text-gray-400"> · PEA Innovation HUB กนว.</span>
-                <!-- text-gray-500 = เทากลาง (ข้อความรอง) -->
-                <!-- dark:text-gray-400 = เทาอ่อนกว่าหน่อยใน dark mode -->
               </div>
             </div>
 
@@ -571,16 +342,12 @@
             <div class="flex items-start gap-[10px] py-[10px]
                         text-[0.9rem] text-gray-700 dark:text-gray-300
                         transition-colors duration-300">
-            <!-- แถวนี้ไม่มี border-b เพราะเป็นแถวสุดท้าย -->
 
               <span class="text-[1.1rem] shrink-0">🔄</span>
 
               <div>
                 กำลังจะย้ายเข้า
                 <span class="font-semibold text-gray-800 dark:text-gray-100"> Easy D</span>
-                <!-- font-semibold = ตัวกึ่งหนา สำหรับชื่อสายงาน -->
-                <!-- text-gray-800 = เทาเข้มมาก (เน้นให้เด่น) -->
-                <!-- dark:text-gray-100 = เกือบขาวใน dark mode -->
                 <span class="text-gray-500 dark:text-gray-400"> · สายงาน ธต.</span>
               </div>
             </div>
@@ -592,9 +359,6 @@
           <!-- เส้นคั่น -->
           <hr class="border-gray-200 dark:border-gray-700 mb-6 transition-colors duration-300">
           <!-- hr = horizontal rule = เส้นคั่นแนวนอน -->
-          <!-- border-gray-200 = สีเส้นเทาอ่อน (ค่าปกติของ hr ใน Tailwind ใช้ border) -->
-          <!-- dark:border-gray-700 = สีเส้นเทาเข้ม (dark mode) -->
-          <!-- mb-6 = margin ล่าง 24px -->
 
 
           <!-- หมวด: Projects -->
@@ -606,7 +370,7 @@
                       pb-[5px] mb-[14px] transition-colors duration-300">
               Projects
             </p>
-            <!-- p = หัวข้อหมวด "Projects" — style เหมือน Skills / Links / สังกัด -->
+            <!-- p = หัวข้อหมวด "Projects" -->
 
 
             <!-- Project Card: Buffit -->
@@ -614,49 +378,22 @@
                         border border-gray-200 dark:border-gray-700
                         rounded-[10px] bg-gray-50 dark:bg-gray-900
                         transition-colors duration-300">
-              <!-- flex = Flexbox จัด icon svg + ข้อความ -->
-              <!-- items-start = ชิดด้านบน -->
-              <!-- gap-[14px] = ช่องว่าง 14px ระหว่าง icon กับข้อความ -->
-              <!-- p-4 = padding รอบด้าน 16px -->
-              <!-- border border-gray-200 = เส้นขอบเทาอ่อน -->
-              <!-- dark:border-gray-700 = เส้นขอบเทาเข้ม (dark mode) -->
-              <!-- rounded-[10px] = มุมโค้ง 10px -->
-              <!-- bg-gray-50 = พื้นหลังเทาอ่อนมาก -->
-              <!-- dark:bg-gray-900 = พื้นหลังเกือบดำ (dark mode) -->
 
               <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"
                 class="text-gray-700 dark:text-gray-300 shrink-0 mt-0.5" aria-hidden="true">
-                <!-- width="32" height="32" = icon ใหญ่ขึ้น 32px สำหรับ project card -->
-                <!-- class="text-gray-700 dark:text-gray-300" = สี icon ตามธีม -->
-                <!-- mt-0.5 = margin บน 2px (จัด icon ให้ไม่สูงเกินไปเมื่อเทียบกับข้อความ) -->
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
               </svg>
 
               <div>
                 <div class="font-bold text-base text-gray-800 dark:text-gray-100">Buffit</div>
-                <!-- div = กล่องชื่อโปรเจค -->
-                <!-- font-bold = ตัวหนา -->
-                <!-- text-base = 16px -->
-                <!-- text-gray-800 = เทาเข้มมาก -->
-                <!-- dark:text-gray-100 = เกือบขาว (dark mode) -->
 
                 <div class="text-[0.85rem] mt-1.5 leading-[1.65] text-gray-600 dark:text-gray-400">
                   แอปออกกำลังกายแบบกลุ่ม บันทึก Workout สะสม Coin ร่วมกัน ถึง Group Goal ได้กินบุฟเฟ่ต์กับเพื่อน 🍱
                 </div>
-                <!-- text-[0.85rem] = ขนาด 13.6px (คำอธิบาย) -->
-                <!-- mt-1.5 = margin บน 6px -->
-                <!-- leading-[1.65] = ระยะห่างบรรทัด 1.65 เท่า (อ่านง่ายขึ้น) -->
-                <!-- text-gray-600 = เทากลาง (ข้อความรอง) -->
-                <!-- dark:text-gray-400 = เทาอ่อนกว่า (dark mode) -->
 
                 <div class="text-[0.78rem] mt-2 italic text-gray-400 dark:text-gray-500">
                   ทดลองใช้ได้จาก links ที่แสดงไว้
                 </div>
-                <!-- text-[0.78rem] = ขนาดเล็กมาก 12.48px -->
-                <!-- mt-2 = margin บน 8px -->
-                <!-- italic = ตัวเอียง -->
-                <!-- text-gray-400 = เทาอ่อน (hint text) -->
-                <!-- dark:text-gray-500 = เทากลาง (dark mode) -->
 
               </div>
             </div>
@@ -693,60 +430,23 @@
                      w-full md:w-auto justify-center md:justify-start
                      transition-colors duration-200">
               <!-- button = ปุ่มกดได้ -->
-              <!-- id="toggleBtn" = JavaScript ใช้ toggle แสดง/ซ่อน #reason -->
-              <!-- flex items-center gap-2 = Flexbox จัด text + arrow icon ให้อยู่ในแถวเดียว -->
-              <!-- bg-orange-500 = พื้นหลังส้ม (light mode) -->
-              <!-- dark:bg-orange-600 = พื้นหลังส้มเข้มกว่า (dark mode) -->
-              <!-- hover:bg-orange-600 = พื้นหลังเข้มขึ้นเมื่อ hover (light mode) -->
-              <!-- dark:hover:bg-orange-500 = พื้นหลังอ่อนลงเมื่อ hover (dark mode) -->
-              <!-- text-white = ตัวอักษรสีขาว -->
-              <!-- text-sm = ขนาด 14px -->
-              <!-- font-semibold = ตัวกึ่งหนา -->
-              <!-- px-5 = padding ซ้าย-ขวา 20px -->
-              <!-- py-2.5 = padding บน-ล่าง 10px -->
-              <!-- rounded-xl = มุมโค้ง 12px -->
-              <!-- cursor-pointer = cursor เป็นรูปมือ -->
-              <!-- select-none = ป้องกัน highlight ข้อความ -->
-              <!-- w-full = ความกว้างเต็ม (mobile) -->
-              <!-- md:w-auto = กว้างเท่าเนื้อหาบน md+ -->
-              <!-- justify-center = จัดเนื้อหาให้อยู่กึ่งกลาง (mobile) -->
-              <!-- md:justify-start = จัดชิดซ้ายบน md+ -->
-              <!-- transition-colors duration-200 = เปลี่ยนสีแบบ smooth 200ms -->
               <span>เหตุผลที่อยากเข้า DevPool</span>
               <span id="toggleArrow">▼</span>
-              <!-- span id="toggleArrow" = JavaScript หมุน arrow เป็น ▲ เมื่อ expand -->
             </button>
 
 
             <!-- กล่องเหตุผล (ซ่อนไว้ก่อน) -->
-            <div id="reason"
+            <div id="reasonDevpool"
               class="hidden mt-[14px] p-4
                      bg-orange-50 dark:bg-orange-600/10
                      border-l-4 border-orange-500 dark:border-orange-400
                      rounded-r-lg leading-[1.8]
                      text-gray-700 dark:text-gray-300 text-[0.92rem]
                      transition-colors duration-300">
-              <!-- div id="reason" = กล่องเหตุผลที่ JavaScript จะ toggle class 'hidden' -->
-              <!-- hidden = display: none = ซ่อนไว้ก่อน -->
-              <!-- mt-[14px] = margin บน 14px (ระยะห่างจากปุ่ม) -->
-              <!-- p-4 = padding รอบด้าน 16px -->
-              <!-- bg-orange-50 = พื้นหลังส้มอ่อนมาก (light mode) -->
-              <!-- dark:bg-orange-600/10 = พื้นหลังส้มโปร่งใส 10% (dark mode) -->
-              <!-- border-l-4 = เส้นขอบซ้ายหนา 4px (accent bar) -->
-              <!-- border-orange-500 = สีเส้นขอบส้ม -->
-              <!-- dark:border-orange-400 = สีส้มอ่อนกว่า (dark mode) -->
-              <!-- rounded-r-lg = มุมโค้งด้านขวา 8px (ซ้ายคือเส้น accent จึงไม่โค้ง) -->
-              <!-- leading-[1.8] = ระยะห่างบรรทัด 1.8 เท่า (อ่านสบาย) -->
-              <!-- text-gray-700 = เทาเข้ม -->
-              <!-- dark:text-gray-300 = เทาอ่อน (dark mode) -->
-              <!-- text-[0.92rem] = ขนาด 14.72px -->
 
               <p>
                 ปัจจุบันเป็นทีมพัฒนาผลิตภัณฑ์
                 <strong class="text-gray-900 dark:text-white">Hinghoihome</strong>
-                <!-- strong = เน้นข้อความสำคัญ (ชื่อผลิตภัณฑ์) -->
-                <!-- text-gray-900 = เกือบดำ (light mode) -->
-                <!-- dark:text-white = ขาว (dark mode) -->
                 ซึ่งเป็นผลิตภัณฑ์เชิงพาณิชย์ของ กฟภ.
                 จึงต้องการมีความรู้ความสามารถในการพัฒนาตัวผลิตภัณฑ์ด้วยตัวเอง
                 และเข้าใจบริบทของ DevPool ที่มาพัฒนาให้
