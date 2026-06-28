@@ -1,3 +1,4 @@
+// ── Weather Widget ──────────────────────────────────────────────────────────
 const WEATHER_LABELS = {
   0: 'ท้องฟ้าแจ่มใส', 1: 'เมฆบางส่วน', 2: 'มีเมฆมาก', 3: 'ครึ้ม',
   45: 'หมอก', 48: 'หมอกหนัก',
@@ -25,6 +26,7 @@ async function getWeather() {
 }
 getWeather();
 
+// ── Dark Mode ────────────────────────────────────────────────────────────────
 function toggleDarkMode() {
   const isDark = document.documentElement.classList.toggle('dark');
   document.getElementById('darkModeBtn').textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
@@ -37,6 +39,7 @@ function initDarkModeBtn() {
 document.getElementById('darkModeBtn').addEventListener('click', toggleDarkMode);
 initDarkModeBtn();
 
+// ── Profile Image ────────────────────────────────────────────────────────────
 const profileImg = document.getElementById('profileImg');
 const initials   = document.getElementById('initials');
 
@@ -45,11 +48,11 @@ profileImg.addEventListener('load',      () => { initials.style.display = 'none'
 profileImg.addEventListener('mouseover', () => { profileImg.src = 'assets/profileugly.png'; });
 profileImg.addEventListener('mouseout',  () => { profileImg.src = 'assets/profile.jpg'; });
 
-const toggleBtn  = document.getElementById('toggleBtn');
+// ── DevPool Reason Toggle ───────────────────────────────────────────────────────────
+const toggleBtn   = document.getElementById('toggleBtn');
 const reasonBlock = document.getElementById('reasonDevpool');
-const arrowSpan  = document.getElementById('toggleArrow');
+const arrowSpan   = document.getElementById('toggleArrow');
 toggleBtn.addEventListener('click', function () {
   const isHidden = reasonBlock.classList.toggle('hidden');
   arrowSpan.textContent = isHidden ? '▼' : '▲';
 });
-
