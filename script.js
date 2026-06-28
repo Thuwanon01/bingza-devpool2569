@@ -37,6 +37,14 @@ function initDarkModeBtn() {
 document.getElementById('darkModeBtn').addEventListener('click', toggleDarkMode);
 initDarkModeBtn();
 
+const profileImg = document.getElementById('profileImg');
+const initials   = document.getElementById('initials');
+
+profileImg.addEventListener('error',     () => { profileImg.style.display = 'none'; initials.style.display = 'flex'; });
+profileImg.addEventListener('load',      () => { initials.style.display = 'none'; });
+profileImg.addEventListener('mouseover', () => { profileImg.src = 'assets/profileugly.png'; });
+profileImg.addEventListener('mouseout',  () => { profileImg.src = 'assets/profile.jpg'; });
+
 const toggleBtn  = document.getElementById('toggleBtn');
 const reasonBlock = document.getElementById('reasonDevpool');
 const arrowSpan  = document.getElementById('toggleArrow');

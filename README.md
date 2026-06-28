@@ -16,7 +16,7 @@ Portfolio / Resume เว็บไซต์ส่วนตัว สร้าง
 - **Dark Mode** — toggle ได้ บันทึกค่าไว้ใน `localStorage`
 - **Weather Widget** — ดึงข้อมูลสภาพอากาศแบบ real-time ผ่าน Open-Meteo API
 - **Responsive Design** — รองรับทั้งมือถือและ desktop ด้วย Tailwind breakpoint
-- **Animated Profile Image** — สลับระหว่างรูปภาพและ initials fallback
+- **Profile Image Hover** — hover แล้วสลับรูป, มี initials fallback กรณีรูปโหลดไม่ได้
 - **Expandable Section** — กล่อง "เหตุผลที่สมัคร DevPool" ย่อ/ขยายได้
 
 ---
@@ -28,7 +28,8 @@ web-starter/
 ├── index.html      # หน้าเดียวทั้งหมด — โครงสร้าง + layout + style
 ├── script.js       # logic ทั้งหมด (dark mode, weather API, toggle)
 └── assets/
-    └── profile.jpg # รูปโปรไฟล์
+    ├── profile.jpg     # รูปโปรไฟล์ปกติ
+    └── profileugly.png # รูปสลับเมื่อ hover
 ```
 
 ---
